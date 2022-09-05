@@ -21,7 +21,7 @@ namespace Business.Concrete
         {
             if(car.CarName.Length >= 2 && car.DailyPrice > 0)
             {
-                _carDal.Add(car);
+                _carDal.Add(car); 
             }
             else
             {
