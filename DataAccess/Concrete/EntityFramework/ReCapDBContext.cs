@@ -14,8 +14,21 @@ namespace DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseSqlServer(@"Server = (localdb)\mssqllocaldb; Database = ReCapDB; Trusted_Connection = true");
         }
+
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Customer>().HasNoKey();
+        //    modelBuilder.Entity<User>().HasNoKey();
+        //}
+
+
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
+        public DbSet<User> Users { get; set; }
+        
     }
 }

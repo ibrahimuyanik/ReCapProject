@@ -3,6 +3,7 @@
 
 
 using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -51,6 +52,18 @@ using Entities.Concrete;
 //CarManager carManager = new CarManager(new EfCarDal()); // CRUD var,  id'ye göre getirme tamam
 
 
+//var result = carManager.GetCarDetails();
+
+//if (result.Success)
+//{
+//	//Console.WriteLine(result.Message);
+//	foreach (var car in result.Data)
+//	{
+//		Console.WriteLine(car.CarName + " / " + car.BrandName + " / " + car.ColorName);
+//	}
+//}  
+
+
 
 
 //foreach (var car in carManager.GetCarDetails())
@@ -69,4 +82,73 @@ using Entities.Concrete;
 //foreach (var car in carManager.GetAll())
 //{
 //    Console.WriteLine(car.CarName);
+//}
+
+
+
+
+//UserManager userManager = new UserManager(new EfUserDal());
+
+
+//var result = userManager.GetById(1);
+
+//if (result.Success)
+//{
+//    Console.WriteLine(result.Data.FirstName);
+//}
+
+
+
+//userManager.Add(new User { Id=2, FirstName="ümit", LastName="ciğeroğlu", Email="deneme2@gmail.com", Password="123456"});
+
+
+
+
+//var result2 = userManager.GetAll();
+
+//if (result2.Success)
+//{
+//    foreach (var user in result2.Data)
+//    {
+//        Console.WriteLine(user.FirstName);
+//    }
+
+//}
+
+
+
+//CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+//var result = customerManager.Delete(new Customer {  CustomerId=4,UserId=1, CompanyName = "güncellendi"});
+//if (result.Success)
+//{
+//    Console.WriteLine(result.Success);
+//}
+
+
+//var result = customerManager.GetById(1);
+
+//if (result.Success)
+//{
+//    Console.WriteLine(result.Data.CompanyName);
+//}
+
+
+
+RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+var result = rentalManager.Add(new Rental { CarId=2, CustomerId=2, RentDate=DateTime.Now });
+
+if (result.Success)
+{
+    Console.WriteLine(result.Message);
+
+}
+else
+{
+    Console.WriteLine(result.Message);
+}
+//foreach (var rental in rentalManager.GetAll().Data)
+//{
+//    Console.WriteLine(rental.ReturnDate);
 //}
