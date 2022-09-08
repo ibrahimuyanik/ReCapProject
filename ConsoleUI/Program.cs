@@ -137,7 +137,7 @@ using Entities.Concrete;
 
 RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-var result = rentalManager.Add(new Rental { CarId=2, CustomerId=2, RentDate=DateTime.Now });
+var result = rentalManager.Add(new Rental { CarId=3, CustomerId=2, RentDate=DateTime.Now });
 
 if (result.Success)
 {

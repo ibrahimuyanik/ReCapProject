@@ -5,6 +5,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,17 +22,31 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            List<Rental> rentalsByCarId = _rentalDal.GetAll(r => r.CarId == rental.CarId);
-            var lastItem = rentalsByCarId.Last();
+            //1. Yol
+            //List<Rental> rentalsByCarId = _rentalDal.GetAll(r => r.CarId == rental.CarId);
+            //var lastItem = rentalsByCarId.Last();
 
-            if (lastItem.ReturnDate != null)
+            //if (lastItem.ReturnDate != null)
+            //{
+            //    _rentalDal.Add(rental);
+            //    return new SuccessResult("Eklendi");
+            //}
+
+            //return new ErrorResult("Eklenemedi"); 
+
+
+            //2.yol
+            var checkRent = _rentalDal.GetAll(r => r.CarId == rental.CarId);
+    
+	        foreach (var rent in checkRent) 
             {
-                _rentalDal.Add(rental);
-                return new SuccessResult("Eklendi");
+                if (rent.ReturnDate.Equals(null)) 
+                {
+                    return new ErrorResult("Eklenemedi"); 
+                }
             }
-
-            return new ErrorResult("Eklenemedi");
-
+            _rentalDal.Add(rental);
+            return new SuccessResult("Eklendi");
         }
 
         public IResult Delete(Rental rental)
