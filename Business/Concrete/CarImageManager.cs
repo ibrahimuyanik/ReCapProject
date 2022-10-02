@@ -99,7 +99,7 @@ namespace Business.Concrete
         private IDataResult<List<CarImage>> GetDefaultImage(int carId) // arabanın resmi yoksa default resim atayacak olan metod
         {
             List<CarImage> carImage = new List<CarImage>();
-            carImage.Add(new CarImage { CarId = carId, Date = DateTime.Now, ImagePath = "DefaultImage.jpg" });
+            carImage.Add(new CarImage { CarId = carId, Date = DateTime.Now, ImagePath = PathConstants.ImagesPath + "Default\\DefaultImage.jpg" });
             return new SuccessDataResult<List<CarImage>>(carImage);
         }
 
