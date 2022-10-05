@@ -40,9 +40,9 @@ namespace Core.Utilities.Helpers.FileHelper
                     Directory.CreateDirectory(root);
                 }
 
-                string extension = Path.GetExtension(file.FileName);
-                string guid = GuidHelper.GuidHelper.CreateGuid();
-                string filePath = guid + extension;
+                string extension = Path.GetExtension(file.FileName);// dosyanın uzantısını aldık .jpg gibi
+                string guid = GuidHelper.GuidHelper.CreateGuid(); // guid değeri oluşturduk
+                string filePath = guid + extension; // guid değeri ile dosya uzantısını birleştirdik
 
                 using (FileStream fileStream = File.Create(root + filePath))
                 {
