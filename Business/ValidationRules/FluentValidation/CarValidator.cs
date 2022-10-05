@@ -15,7 +15,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.DailyPrice).GreaterThan(0);
             RuleFor(c => c.CarName).NotEmpty();
             RuleFor(c => c.ModelYear).NotEmpty();
-            RuleFor(c => c.CarName).Must(StartWidthA).WithMessage("Araba A harfi ile başlamalı");
+            //RuleFor(c => c.CarName).Must(StartWidthA).WithMessage("Araba A harfi ile başlamalı");
         }
 
 

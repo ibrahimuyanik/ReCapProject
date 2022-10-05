@@ -3,6 +3,8 @@ using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
 using Business.DependencyResolvers.Autofac;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.Ioc;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
@@ -35,7 +37,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // AP
         };
     });
 
-ServiceTool.Create(builder.Services);
+builder.Services.AddDependencyResolvers(new ICoreModule[]
+{
+    new CoreModule()
+});
 
 
 
@@ -82,6 +87,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 
