@@ -2,6 +2,8 @@
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Entities.DTOs;
+using Core.Utilities.Results;
 
 namespace WebAPI.Controllers
 {
@@ -10,10 +12,12 @@ namespace WebAPI.Controllers
     public class RentalsController : ControllerBase
     {
         IRentalService _rentalService;
+       
 
         public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
+           
         }
         [HttpGet("getall")]
         public IActionResult GetAll()
@@ -35,6 +39,18 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getrentaldetails")]
+        public IActionResult GetRentalDetails()
+        {
+            var result = _rentalService.GetRentalDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Rental rental)
         {
@@ -65,5 +81,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+       
     }
 }
