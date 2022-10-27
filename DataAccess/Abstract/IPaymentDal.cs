@@ -5,13 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.DTOs;
-using System.Linq.Expressions;
 
 namespace DataAccess.Abstract
 {
-    public interface IRentalDal: IEntityRepository<Rental>
+    public interface IPaymentDal: IEntityRepository<Payment>
     {
-        List<RentalDetailDto> GetRentalDetails(Expression<Func<RentalDetailDto, bool>> filter = null);
     }
 }

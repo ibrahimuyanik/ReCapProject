@@ -32,8 +32,9 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = cl.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
-                                 CarImagePath = (from i in context.CarImages where i.CarId == c.Id select i.ImagePath).ToList()// arabanın resimlerini liste halinde getirdik.
-                                
+                                 CarImagePath = (from i in context.CarImages where i.CarId == c.Id select i.ImagePath).ToList(),// arabanın resimlerini liste halinde getirdik.
+                                 IsRentable = !context.Rentals.Any(r => r.CarId == c.Id) || !context.Rentals.Any(r => r.CarId == c.Id && (r.ReturnDate == null || (r.ReturnDate.HasValue && r.ReturnDate > DateTime.Now)))
+                                 // IsRent araç kiradamı değilmi diye kontrol yapar. Kiradaysa false döner
                              };
                 return filter == null
                     ? result.ToList()

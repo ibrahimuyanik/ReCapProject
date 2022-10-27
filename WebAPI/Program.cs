@@ -88,6 +88,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.ConfigureCustomExceptionMiddleware();
+
 app.UseStaticFiles(); // api'den resim dosyalarını çekmek için
 
 app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());

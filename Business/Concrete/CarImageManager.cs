@@ -71,6 +71,7 @@ namespace Business.Concrete
         public IResult Update(IFormFile file, CarImage carImage)
         {
             carImage.ImagePath = _fileHelper.Update(file, PathConstants.ImagesPath + carImage.ImagePath, PathConstants.ImagesPath); // resmi ve resmin dosya yolunu değiştirdik
+            carImage.Date = DateTime.Now;
             _carImageDal.Update(carImage); // resmi db'de değiştirdik
             return new SuccessResult();
         }
